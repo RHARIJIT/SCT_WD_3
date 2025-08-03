@@ -1,0 +1,144 @@
+:root {
+  --bgc: #05041f;
+  --ele: rgb(217, 81, 235);
+}
+
+body {
+  background-color: var(--bgc);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.container h1 {
+  font-family: algerian;
+  font-size: 60px;
+  color: rgb(109, 223, 223);
+  text-shadow: 0 0 17px rgb(219, 96, 237) !important;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+h1 {
+  color: white;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(3, 100px);
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.cell {
+  background-color: var(--bgc);
+  border: none;
+  outline: 2px solid var(--ele);
+  outline-offset: -8px;
+  display: flex;
+  box-shadow: 0 0 15px 2px var(--ele);
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5rem;
+  color: white;
+  cursor: pointer;
+  animation: fall-in 0.4s ease forwards;
+  opacity: 0;
+}
+
+.cell:hover {
+  scale: 1.15;
+  box-shadow: 0 0 15px 10px rgba(23, 218, 218, 0.828);
+  outline: 2px solid rgba(23, 218, 218, 0.828);
+  outline-offset: -8px;
+  transition: all 0.18s ease;
+}
+
+.cell[data-value="X"] {
+  color: var(--ele);
+  text-shadow: 0 0 15px #00f0ff;
+}
+
+.cell[data-value="O"] {
+  color: #ff0040;
+  text-shadow: 0 0 15px #ff0040;
+}
+
+button {
+  margin-top: 50px;
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  background-color: #00f0ff;
+  border: none;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 0 20px #00f0ff;
+}
+
+button:hover {
+  scale: 1.1;
+  transition: all 0.2s ease;
+  box-shadow: 0 0 15px #c987cd;
+}
+
+#result,
+#scoreboard {
+  color: white;
+  margin-top: 20px;
+}
+
+#scoreboard {
+  font-size: 30px;
+  margin-bottom: 40px;
+}
+
+@media (max-width: 500px) {
+  .board {
+    grid-template-columns: repeat(3, 80px);
+    grid-template-rows: repeat(3, 80px);
+  }
+
+  .cell {
+    font-size: 2rem;
+  }
+}
+
+/* Fall-in animation */
+@keyframes fall-in {
+  0% {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Stagger animation delays */
+.cell-0, .cell-1, .cell-2 {
+  animation-delay: 0ms;
+}
+.cell-3, .cell-4, .cell-5 {
+  animation-delay: 250ms;
+}
+.cell-6, .cell-7, .cell-8 {
+  animation-delay: 500ms;
+}
+
+/* 🔥 Winning highlight */
+.cell.winning {
+   box-shadow: 0 0 15px 8px rgba(23, 218, 127, 0.828);
+  outline: 2px solid rgba(23, 218, 127, 0.828);
+  outline-offset: -8px;
+}
